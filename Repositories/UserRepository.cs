@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography.X509Certificates;
 using TravelCoServer.Models;
 using TravelCoServer.Repositories.Data;
 
@@ -95,6 +96,110 @@ namespace TravelCoServer.Repositories
                 SqlCommand cmd = new SqlCommand("TravelCo_sp_LoginEvent_Add", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@UserId", userId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        // METHODS for profile & preferences management
+        public void SetContinents(int userId, List<string> continents)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+
+                SqlCommand clear = new SqlCommand("TravelCo_sp_UserContinents_Clear", conn);
+                clear.CommandType = CommandType.StoredProcedure;
+                clear.Parameters.AddWithValue("@UserId", userId);
+                clear.ExecuteNonQuery();
+
+                if (continents != null)
+                {
+                    foreach (string cont in continents)
+                    {
+                        SqlCommand add = new SqlCommand("TravelCo_sp_UserContinent_Add", conn);
+                        add.CommandType = CommandType.StoredProcedure;
+                        add.Parameters.AddWithValue("@UserId", userId);
+                        add.Parameters.AddWithValue("@Continent", cont);
+                        add.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        public List<LanguagePref> GetLanguages(int userId)
+        {
+            List<LanguagePref> list = new List<LanguagePref>();
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_UserLanguages_Get", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(new LanguagePref
+                    {
+                        Name = reader["LanguageName"].ToString(),
+                        Level = reader["Level"].ToString()
+                    });
+                }
+            }
+            return list;
+        }
+
+        public void SetLanguages(int userId, List<LanguagePref> languages)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand clear = new SqlCommand("TravelCo_sp_UserLanguages_Clear", conn);
+                clear.CommandType = CommandType.StoredProcedure;
+                clear.Parameters.AddWithValue("@UserId", userId);
+                clear.ExecuteNonQuery();
+                if (languages != null)
+                {
+                    foreach (var lang in languages)
+                    {
+                        SqlCommand add = new SqlCommand("TravelCo_sp_UserLanguage_Add", conn);
+                        add.CommandType = CommandType.StoredProcedure;
+                        add.Parameters.AddWithValue("@UserId", userId);
+                        add.Parameters.AddWithValue("@LanguageName", lang.Name);
+                        add.Parameters.AddWithValue("@Level", lang.Level);
+                        add.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        public List<string> GetContinents(int userId)
+        {
+            List<string> list = new List<string>();
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_UserContinents_Get", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    list.Add(reader["Continent"].ToString());
+                }
+            }
+            return list;
+        }
+
+        public void UpdateProfile(int userId, string username, string email)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_User_Update", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", userId);
+                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue("@Email", email);
                 cmd.ExecuteNonQuery();
             }
         }

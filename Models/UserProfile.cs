@@ -1,11 +1,11 @@
 ﻿namespace TravelCoServer.Models
 {
-    public class RegisterRequest
+    public class UserProfile // what GET /api/users/me returns
     {
-        // properties
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
+        public string Role { get; set; }
         public Preferences Preferences { get; set; } = new Preferences();
     }
 }

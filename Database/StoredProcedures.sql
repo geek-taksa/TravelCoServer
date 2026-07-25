@@ -350,3 +350,68 @@ BEGIN
 END
 GO
 
+--------------
+-- Procedures for progile & preferences management
+CREATE PROCEDURE TravelCo_sp_UserContinents_Clear
+    @UserId INT
+AS
+BEGIN
+    DELETE FROM TravelCo_UserContinents WHERE UserId = @UserId;
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_UserContinent_Add
+    @UserId INT, @Continent NVARCHAR(50)
+AS
+BEGIN
+    INSERT INTO TravelCo_UserContinents (UserId, Continent) VALUES (@UserId, @Continent);
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_UserLanguages_Clear
+    @UserId INT
+AS
+BEGIN
+    DELETE FROM TravelCo_UserLanguages WHERE UserId = @UserId;
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_UserLanguage_Add
+    @UserId INT, @LanguageName NVARCHAR(50), @Level NVARCHAR(20)
+AS
+BEGIN
+    INSERT INTO TravelCo_UserLanguages (UserId, LanguageName, Level)
+    VALUES (@UserId, @LanguageName, @Level);
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_UserContinents_Get
+    @UserId INT
+AS
+BEGIN
+    SELECT Continent FROM TravelCo_UserContinents WHERE UserId = @UserId;
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_UserLanguages_Get
+    @UserId INT
+AS
+BEGIN
+    SELECT LanguageName, Level FROM TravelCo_UserLanguages WHERE UserId = @UserId;
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_User_Update
+    @Id INT, @Username NVARCHAR(50), @Email NVARCHAR(256)
+AS
+BEGIN
+    UPDATE TravelCo_Users SET Username = @Username, Email = @Email WHERE Id = @Id;
+END
+GO
+

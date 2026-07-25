@@ -40,6 +40,13 @@ namespace TravelCoServer.Services
 
             // saves it
             user.Id = _userRepo.Create(user);
+
+            // save preferences (guard in case the client sent none)
+            if (req.Preferences != null)
+            {
+                _userRepo.SetContinents(user.Id, req.Preferences.Continents);
+                _userRepo.SetLanguages(user.Id, req.Preferences.Languages);
+            }
             return user;
         }
 

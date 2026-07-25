@@ -44,6 +44,7 @@ builder.Services.AddScoped<DbHelper>();
 builder.Services.AddScoped<CountryRepository>();
 builder.Services.AddScoped<CountryService>();
 builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<ListRepository>();
 builder.Services.AddScoped<ListService>();

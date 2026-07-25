@@ -50,15 +50,6 @@ namespace TravelCoServer.Controllers
             }
         }
 
-        // GET api/auth/me
-        [Authorize] // requires a valid JWT in the Authorization header
-        [HttpGet("me")]
-        public ActionResult Me()
-        {
-            var id = User.FindFirstValue(ClaimTypes.NameIdentifier); // gives logged-in user's Id
-            var name = User.FindFirstValue(ClaimTypes.Name);
-            var role = User.FindFirstValue(ClaimTypes.Role);
-            return Ok(new { id, name, role });
-        }
+        
     }
 }
