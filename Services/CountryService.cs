@@ -39,5 +39,9 @@ namespace TravelCoServer.Services
         { 
             return _repo.GetRegionCounts(); 
         }
+        public List<Country> GetCountries(string? search, string? region, string? language, string? currency, string? sort, string? order)
+        {
+            return _repo.GetCountries(search, region, language, currency, sort, order);
+        }
     }
 }

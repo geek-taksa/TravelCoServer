@@ -53,9 +53,12 @@ namespace TravelCoServer.Repositories
                 cmd.Parameters.AddWithValue("@Code", code);
 
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())            // one row expected
+
+                // Result set 1: the country
+                Country? c = null;
+                if (reader.Read())
                 {
-                    Country c = new Country();
+                    c = new Country();
                     c.Code = reader["Code"].ToString();
                     c.Name = reader["Name"].ToString();
                     c.Capital = reader["Capital"] as string;
@@ -63,9 +66,20 @@ namespace TravelCoServer.Repositories
                     c.Population = Convert.ToInt64(reader["Population"]);
                     c.Area = Convert.ToDouble(reader["Area"]);
                     c.Flag = reader["Flag"] as string;
-                    return c;
                 }
-                return null;                  // no country found
+                if (c == null) return null;
+
+                // Result set 2: languages
+                reader.NextResult();
+                while (reader.Read())
+                    c.Languages.Add(reader["Language"].ToString());
+
+                // Result set 3: currencies
+                reader.NextResult();
+                while (reader.Read())
+                    c.Currencies.Add(reader["Currency"].ToString());
+
+                return c;
             }
         }
 
@@ -202,6 +216,39 @@ namespace TravelCoServer.Repositories
                 }
             }
             return counts;
+        }
+
+        public List<Country> GetCountries(string? search, string? region, string? language,
+                                      string? currency, string? sort, string? order)
+        {
+            List<Country> countries = new List<Country>();
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_Country_List", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Search", (object?)search ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Region", (object?)region ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Language", (object?)language ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Currency", (object?)currency ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Sort", string.IsNullOrEmpty(sort) ? "name" : sort);
+                cmd.Parameters.AddWithValue("@Order", string.IsNullOrEmpty(order) ? "asc" : order);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Country c = new Country();
+                    c.Code = reader["Code"].ToString();
+                    c.Name = reader["Name"].ToString();
+                    c.Capital = reader["Capital"] as string;
+                    c.Region = reader["Region"] as string;
+                    c.Population = Convert.ToInt64(reader["Population"]);
+                    c.Area = Convert.ToDouble(reader["Area"]);
+                    c.Flag = reader["Flag"] as string;
+                    countries.Add(c);
+                }
+            }
+            return countries;
         }
     }
 }

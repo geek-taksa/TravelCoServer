@@ -19,9 +19,12 @@ namespace TravelCoServer.Controllers
 
         // GET api/countries
         [HttpGet]
-        public ActionResult<List<Country>> GetAll()
+        public ActionResult<List<Country>> GetAll(
+        [FromQuery] string? search, [FromQuery] string? region,
+        [FromQuery] string? language, [FromQuery] string? currency,
+        [FromQuery] string? sort, [FromQuery] string? order)
         {
-            return Ok(_service.GetAll());
+            return Ok(_service.GetCountries(search, region, language, currency, sort, order));
         }
 
         // GET api/countries/{code}

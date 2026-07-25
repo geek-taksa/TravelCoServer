@@ -427,3 +427,53 @@ BEGIN
 END
 GO
 
+--------------
+--SP for search & filter
+CREATE PROCEDURE TravelCo_sp_Country_List
+    @Search   NVARCHAR(100) = NULL,
+    @Region   NVARCHAR(50)  = NULL,
+    @Language NVARCHAR(50)  = NULL,
+    @Currency NVARCHAR(50)  = NULL,
+    @Sort     NVARCHAR(20)  = 'name',
+    @Order    NVARCHAR(4)   = 'asc'
+AS
+BEGIN
+    SELECT c.Code, c.Name, c.Capital, c.Region, c.Population, c.Area, c.Flag
+    FROM TravelCo_Countries c
+    WHERE (@Search   IS NULL OR c.Name LIKE '%' + @Search + '%')
+      AND (@Region   IS NULL OR c.Region = @Region)
+      AND (@Language IS NULL OR EXISTS (
+              SELECT 1 FROM TravelCo_CountryLanguages l
+              WHERE l.CountryCode = c.Code AND l.Language = @Language))
+      AND (@Currency IS NULL OR EXISTS (
+              SELECT 1 FROM TravelCo_CountryCurrencies cu
+              WHERE cu.CountryCode = c.Code AND cu.Currency = @Currency))
+    ORDER BY
+      CASE WHEN @Order='asc'  AND @Sort='name'       THEN c.Name END ASC,
+      CASE WHEN @Order='desc' AND @Sort='name'       THEN c.Name END DESC,
+      CASE WHEN @Order='asc'  AND @Sort='region'     THEN c.Region END ASC,
+      CASE WHEN @Order='desc' AND @Sort='region'     THEN c.Region END DESC,
+      CASE WHEN @Order='asc'  AND @Sort='population' THEN c.Population END ASC,
+      CASE WHEN @Order='desc' AND @Sort='population' THEN c.Population END DESC,
+      CASE WHEN @Order='asc'  AND @Sort='area'       THEN c.Area END ASC,
+      CASE WHEN @Order='desc' AND @Sort='area'       THEN c.Area END DESC;
+END
+GO
+
+--------------
+--Altered to fix a bug where lists with languages and currencies were not being shown on the country page
+ALTER PROCEDURE TravelCo_sp_Country_GetByCode
+    @Code NVARCHAR(3)
+AS
+BEGIN
+    SELECT Code, Name, Capital, Region, Population, Area, Flag
+    FROM TravelCo_Countries WHERE Code = @Code;
+
+    SELECT Language FROM TravelCo_CountryLanguages WHERE CountryCode = @Code;
+
+    SELECT Currency FROM TravelCo_CountryCurrencies WHERE CountryCode = @Code;
+END
+GO
+--
+
+

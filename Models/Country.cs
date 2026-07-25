@@ -10,5 +10,7 @@
         public long Population { get; set; }
         public double Area { get; set; }
         public string? Flag { get; set; }
+        public List<string> Languages { get; set; } = new List<string>();
+        public List<string> Currencies { get; set; } = new List<string>();
     }
 }
