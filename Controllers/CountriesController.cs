@@ -75,5 +75,13 @@ namespace TravelCoServer.Controllers
             int count = await _importService.ImportAsync();
             return Ok(new { imported = count });
         }
+
+        //For getting the counts of countries by region (for homepage)
+        // GET api/countries/region-counts
+        [HttpGet("region-counts")]
+        public ActionResult<Dictionary<string, int>> RegionCounts()
+        {
+            return Ok(_service.GetRegionCounts());
+        }
     }
 }

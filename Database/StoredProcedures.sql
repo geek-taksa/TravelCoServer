@@ -415,3 +415,15 @@ BEGIN
 END
 GO
 
+-------------
+--Region counts for the homepage
+CREATE PROCEDURE TravelCo_sp_Country_RegionCounts
+AS
+BEGIN
+    SELECT Region, COUNT(*) AS Count
+    FROM TravelCo_Countries
+    WHERE Region IS NOT NULL
+    GROUP BY Region;
+END
+GO
+

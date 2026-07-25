@@ -35,5 +35,9 @@ namespace TravelCoServer.Services
         { 
             return _repo.Delete(code) > 0;
         }
+        public Dictionary<string, int> GetRegionCounts() 
+        { 
+            return _repo.GetRegionCounts(); 
+        }
     }
 }

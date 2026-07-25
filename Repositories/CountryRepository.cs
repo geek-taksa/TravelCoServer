@@ -186,5 +186,22 @@ namespace TravelCoServer.Repositories
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public Dictionary<string, int> GetRegionCounts()
+        {
+            Dictionary<string, int> counts = new Dictionary<string, int>();
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_Country_RegionCounts", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    counts[reader["Region"].ToString()] = Convert.ToInt32(reader["Count"]);
+                }
+            }
+            return counts;
+        }
     }
 }
