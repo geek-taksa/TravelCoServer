@@ -20,7 +20,7 @@ namespace TravelCoServer.Services
         }
 
         // METHODS
-        public User Register(RegisterRequest req)
+        public (string token, User user) Register(RegisterRequest req)
         {
             // reject a duplicate email
             if (_userRepo.GetByEmail(req.Email) != null)
@@ -47,7 +47,8 @@ namespace TravelCoServer.Services
                 _userRepo.SetContinents(user.Id, req.Preferences.Continents);
                 _userRepo.SetLanguages(user.Id, req.Preferences.Languages);
             }
-            return user;
+            string token = GenerateToken(user);
+            return (token, user);
         }
 
         public (string token, User user) Login(LoginRequest req)

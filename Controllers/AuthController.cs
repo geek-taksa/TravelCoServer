@@ -22,8 +22,8 @@ namespace TravelCoServer.Controllers
         {
             try
             {
-                User user = _auth.Register(req);
-                return Ok(new { user.Id, user.Username, user.Email, user.Role });
+                var (token, user) = _auth.Register(req);
+                return Ok(new { token, user = new { user.Id, user.Username, user.Email, user.Role } });
             }
             catch (Exception ex)
             {
