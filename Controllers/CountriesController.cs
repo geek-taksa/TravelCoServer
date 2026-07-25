@@ -10,9 +10,11 @@ namespace TravelCoServer.Controllers
     public class CountriesController : ControllerBase
     {
         private readonly CountryService _service;
-        public CountriesController(CountryService service)   
+        private readonly CountryImportService _importService;
+        public CountriesController(CountryService service, CountryImportService importService)   
         {
             _service = service;
+            _importService = importService;
         }
 
         // GET api/countries
@@ -62,6 +64,16 @@ namespace TravelCoServer.Controllers
             bool ok = _service.Delete(code);
             if (!ok) return NotFound();
             return Ok();
+        }
+
+        //For importing countries from the REST Countries API (Admin only)
+        // POST api/countries/import
+        [HttpPost("import")]
+        [Authorize(Roles = "admin")]
+        public async Task<ActionResult> Import()
+        {
+            int count = await _importService.ImportAsync();
+            return Ok(new { imported = count });
         }
     }
 }

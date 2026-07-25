@@ -54,6 +54,8 @@ builder.Services.AddScoped<AdminService>();
 builder.Services.AddScoped<QuizRepository>();
 builder.Services.AddScoped<QuizService>();
 
+builder.Services.AddHttpClient<CountryImportService>();
+
 // for this one - I asked AI. It tells ASP.NET how to validate incomimg tokens.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

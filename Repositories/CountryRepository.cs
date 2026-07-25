@@ -117,5 +117,74 @@ namespace TravelCoServer.Repositories
                 return cmd.ExecuteNonQuery();
             }
         }
+
+        // METHODS for countries.dev
+        public void Upsert(Country c)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_Country_Upsert", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Code", c.Code);
+                cmd.Parameters.AddWithValue("@Name", c.Name);
+                cmd.Parameters.AddWithValue("@Capital", (object?)c.Capital ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Region", (object?)c.Region ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Population", c.Population);
+                cmd.Parameters.AddWithValue("@Area", c.Area);
+                cmd.Parameters.AddWithValue("@Flag", (object?)c.Flag ?? DBNull.Value);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void ClearLanguages(string code)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_CountryLanguages_Clear", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CountryCode", code);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void AddLanguage(string code, string language)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_CountryLanguage_Add", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CountryCode", code);
+                cmd.Parameters.AddWithValue("@Language", language);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void ClearCurrencies(string code)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_CountryCurrencies_Clear", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CountryCode", code);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void AddCurrency(string code, string currency)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_CountryCurrency_Add", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CountryCode", code);
+                cmd.Parameters.AddWithValue("@Currency", currency);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
