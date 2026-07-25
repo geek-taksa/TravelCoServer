@@ -293,3 +293,60 @@ BEGIN
 END
 GO
 
+--------------
+--Countries.dev Import
+
+CREATE PROCEDURE TravelCo_sp_Country_Upsert
+    @Code NVARCHAR(3), @Name NVARCHAR(100), @Capital NVARCHAR(100),
+    @Region NVARCHAR(50), @Population BIGINT, @Area FLOAT, @Flag NVARCHAR(255)
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM TravelCo_Countries WHERE Code = @Code)
+        UPDATE TravelCo_Countries
+        SET Name=@Name, Capital=@Capital, Region=@Region,
+            Population=@Population, Area=@Area, Flag=@Flag
+        WHERE Code=@Code;
+    ELSE
+        INSERT INTO TravelCo_Countries (Code, Name, Capital, Region, Population, Area, Flag)
+        VALUES (@Code, @Name, @Capital, @Region, @Population, @Area, @Flag);
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_CountryLanguages_Clear
+    @CountryCode NVARCHAR(3)
+AS
+BEGIN
+    DELETE FROM TravelCo_CountryLanguages WHERE CountryCode = @CountryCode;
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_CountryLanguage_Add
+    @CountryCode NVARCHAR(3), @Language NVARCHAR(50)
+AS
+BEGIN
+    INSERT INTO TravelCo_CountryLanguages (CountryCode, Language)
+    VALUES (@CountryCode, @Language);
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_CountryCurrencies_Clear
+    @CountryCode NVARCHAR(3)
+AS
+BEGIN
+    DELETE FROM TravelCo_CountryCurrencies WHERE CountryCode = @CountryCode;
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_CountryCurrency_Add
+    @CountryCode NVARCHAR(3), @Currency NVARCHAR(50)
+AS
+BEGIN
+    INSERT INTO TravelCo_CountryCurrencies (CountryCode, Currency)
+    VALUES (@CountryCode, @Currency);
+END
+GO
+
