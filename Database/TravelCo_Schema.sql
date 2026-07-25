@@ -1,4 +1,5 @@
-﻿CREATE TABLE TravelCo_Users (
+﻿-- TABLES:
+CREATE TABLE TravelCo_Users (
   Id            INT IDENTITY(1,1) PRIMARY KEY,
   Username      NVARCHAR(50)  NOT NULL,
   Email         NVARCHAR(256) NOT NULL UNIQUE,
@@ -123,3 +124,5 @@ CREATE TABLE TravelCo_LoginEvents (
   CONSTRAINT FK_LoginEvents_Users
     FOREIGN KEY (UserId) REFERENCES TravelCo_Users(Id) ON DELETE CASCADE
 );
+
+
