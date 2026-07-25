@@ -35,7 +35,8 @@ namespace TravelCoServer.Services
                 Username = req.Username,
                 Email = req.Email,
                 PasswordHash = hash,
-                PasswordSalt = salt
+                PasswordSalt = salt,
+                Role = "user"
             };
 
             // saves it
