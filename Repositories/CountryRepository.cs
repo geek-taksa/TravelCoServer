@@ -68,5 +68,54 @@ namespace TravelCoServer.Repositories
                 return null;                  // no country found
             }
         }
+
+        //CRUD:
+        public void Create(Country c)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_Country_Create", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Code", c.Code);
+                cmd.Parameters.AddWithValue("@Name", c.Name);
+                cmd.Parameters.AddWithValue("@Capital", (object?)c.Capital ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Region", (object?)c.Region ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Population", c.Population);
+                cmd.Parameters.AddWithValue("@Area", c.Area);
+                cmd.Parameters.AddWithValue("@Flag", (object?)c.Flag ?? DBNull.Value);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int Update(Country c)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_Country_Update", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Code", c.Code);
+                cmd.Parameters.AddWithValue("@Name", c.Name);
+                cmd.Parameters.AddWithValue("@Capital", (object?)c.Capital ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Region", (object?)c.Region ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Population", c.Population);
+                cmd.Parameters.AddWithValue("@Area", c.Area);
+                cmd.Parameters.AddWithValue("@Flag", (object?)c.Flag ?? DBNull.Value);
+                return cmd.ExecuteNonQuery();   // rows affected
+            }
+        }
+
+        public int Delete(string code)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_Country_Delete", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Code", code);
+                return cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

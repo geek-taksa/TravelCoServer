@@ -55,9 +55,12 @@ namespace TravelCoServer.Services
             if (!PasswordHelper.Verify(req.Password, user.PasswordHash, user.PasswordSalt))
                 throw new Exception("Invalid email or password.");
 
+            _userRepo.AddLoginEvent(user.Id);   // record login for the admin stat
             string token = GenerateToken(user);
             return (token, user);
+
         }
+
 
         private string GenerateToken(User user)
         {

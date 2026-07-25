@@ -196,3 +196,100 @@ AS
 BEGIN
     INSERT INTO TravelCo_LoginEvents (UserId) VALUES (@UserId);
 END
+GO
+
+--------------
+--Gets a user by Id
+CREATE PROCEDURE TravelCo_sp_User_GetById
+    @Id INT
+AS
+BEGIN
+    SELECT Id, Username, Email, PasswordHash, PasswordSalt, Role, IsLocked, CanShare, CreatedAt
+    FROM TravelCo_Users
+    WHERE Id = @Id;
+END
+GO
+
+--------------
+-- Get a quiz and its questions and options, all in one call.
+CREATE PROCEDURE TravelCo_sp_Quiz_Get
+    @Id INT
+AS
+BEGIN
+    -- Result set 1: the quiz itself
+    SELECT Id, Title, TimeLimitSec
+    FROM TravelCo_Quizzes
+    WHERE Id = @Id;
+
+    -- Result set 2: its questions (no AnswerIndex — that's secret)
+    SELECT Id, Prompt
+    FROM TravelCo_QuizQuestions
+    WHERE QuizId = @Id
+    ORDER BY Id;
+
+    -- Result set 3: all options for those questions
+    SELECT o.QuestionId, o.OptionText, o.OrderIndex
+    FROM TravelCo_QuizOptions o
+    INNER JOIN TravelCo_QuizQuestions q ON o.QuestionId = q.Id
+    WHERE q.QuizId = @Id
+    ORDER BY o.QuestionId, o.OrderIndex;
+END
+GO
+
+--------------
+--Get the correct answers (server-side only — used for scoring)
+CREATE PROCEDURE TravelCo_sp_Quiz_GetAnswers
+    @Id INT
+AS
+BEGIN
+    SELECT Id AS QuestionId, AnswerIndex
+    FROM TravelCo_QuizQuestions
+    WHERE QuizId = @Id;
+END
+GO
+
+--------------
+--Saves a result
+CREATE PROCEDURE TravelCo_sp_QuizResult_Add
+    @UserId INT, @QuizId INT, @Score INT, @Points INT
+AS
+BEGIN
+    INSERT INTO TravelCo_QuizResults (UserId, QuizId, Score, Points)
+    VALUES (@UserId, @QuizId, @Score, @Points);
+END
+GO
+
+--------------
+-- Countries CRUD operations for admin users
+CREATE PROCEDURE TravelCo_sp_Country_Create
+    @Code NVARCHAR(3), @Name NVARCHAR(100), @Capital NVARCHAR(100),
+    @Region NVARCHAR(50), @Population BIGINT, @Area FLOAT, @Flag NVARCHAR(255)
+AS
+BEGIN
+    INSERT INTO TravelCo_Countries (Code, Name, Capital, Region, Population, Area, Flag)
+    VALUES (@Code, @Name, @Capital, @Region, @Population, @Area, @Flag);
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_Country_Update
+    @Code NVARCHAR(3), @Name NVARCHAR(100), @Capital NVARCHAR(100),
+    @Region NVARCHAR(50), @Population BIGINT, @Area FLOAT, @Flag NVARCHAR(255)
+AS
+BEGIN
+    UPDATE TravelCo_Countries
+    SET Name=@Name, Capital=@Capital, Region=@Region,
+        Population=@Population, Area=@Area, Flag=@Flag
+    WHERE Code=@Code;
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_Country_Delete
+    @Code NVARCHAR(3)
+AS
+BEGIN
+    DELETE FROM TravelCo_Countries WHERE Code=@Code;
+END
+GO
+

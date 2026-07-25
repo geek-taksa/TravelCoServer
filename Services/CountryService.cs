@@ -22,5 +22,18 @@ namespace TravelCoServer.Services
         {
             return _repo.GetByCode(code);
         }
+
+        public void Create(Country c) 
+        {
+            _repo.Create(c);
+        }
+        public bool Update(Country c) 
+        {
+            return _repo.Update(c) > 0; 
+        }
+        public bool Delete(string code) 
+        { 
+            return _repo.Delete(code) > 0;
+        }
     }
 }

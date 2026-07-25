@@ -27,8 +27,15 @@ namespace TravelCoServer.Controllers
         [Authorize]
         public ActionResult Create([FromBody] ShareRequest req)
         {
-            int id = _service.Create(CurrentUserId, req);
-            return Ok(new { id });
+            try
+            {
+                int id = _service.Create(CurrentUserId, req);
+                return Ok(new { id });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(403, new { message = ex.Message });   // blocked from sharing
+            }
         }
 
         // PUT api/shares/{id}

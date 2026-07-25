@@ -49,6 +49,10 @@ builder.Services.AddScoped<ListRepository>();
 builder.Services.AddScoped<ListService>();
 builder.Services.AddScoped<ShareRepository>();
 builder.Services.AddScoped<ShareService>();
+builder.Services.AddScoped<AdminRepository>();
+builder.Services.AddScoped<AdminService>();
+builder.Services.AddScoped<QuizRepository>();
+builder.Services.AddScoped<QuizService>();
 
 // for this one - I asked AI. It tells ASP.NET how to validate incomimg tokens.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
