@@ -474,6 +474,16 @@ BEGIN
     SELECT Currency FROM TravelCo_CountryCurrencies WHERE CountryCode = @Code;
 END
 GO
---
+
+--------------
+-- Additional SP to fix the bug with shared quizz points across multiple users
+CREATE PROCEDURE TravelCo_sp_QuizResults_GetPoints
+    @UserId INT
+AS
+BEGIN
+    SELECT ISNULL(SUM(Points), 0) AS TotalPoints
+    FROM TravelCo_QuizResults
+    WHERE UserId = @UserId;
+END
 
 

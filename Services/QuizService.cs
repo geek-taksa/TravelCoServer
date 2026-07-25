@@ -25,5 +25,7 @@ namespace TravelCoServer.Services
             _repo.AddResult(userId, quizId, score, points);            // save the result
             return new QuizResult { Score = score, Points = points };
         }
+
+        public int GetTotalPoints(int userId) { return _repo.GetTotalPoints(userId); }
     }
 }

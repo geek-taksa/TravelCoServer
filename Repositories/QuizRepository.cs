@@ -92,5 +92,17 @@ namespace TravelCoServer.Repositories
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public int GetTotalPoints(int userId)
+        {
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_QuizResults_GetPoints", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
     }
 }

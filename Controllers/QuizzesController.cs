@@ -11,9 +11,9 @@ namespace TravelCoServer.Controllers
     public class QuizzesController : ControllerBase
     {
         private readonly QuizService _service;
+        private int CurrentUserId => int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         public QuizzesController(QuizService service) { _service = service; }
 
-        private int CurrentUserId => int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
         // GET api/quizzes
         [HttpGet("{id}")]
@@ -31,6 +31,14 @@ namespace TravelCoServer.Controllers
         {
             QuizResult result = _service.Submit(CurrentUserId, id, submission.Answers);
             return Ok(result);
+        }
+
+        // GET api/quizzes/points
+        [HttpGet("points")]
+        [Authorize]
+        public ActionResult<int> GetPoints()
+        {
+            return Ok(_service.GetTotalPoints(CurrentUserId));
         }
     }
 }
