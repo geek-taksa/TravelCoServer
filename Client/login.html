@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelCo — Log in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <style>
+        .auth-wrap {
+            max-width: 420px;
+            margin: var(--space-10) auto;
+        }
+
+        .auth-card {
+            padding: var(--space-7);
+        }
+
+        .auth-title {
+            font-family: var(--font-display);
+            font-size: var(--fs-2xl);
+            color: var(--color-heading);
+            margin-bottom: var(--space-2);
+        }
+
+        .auth-sub {
+            color: var(--color-muted);
+            margin-bottom: var(--space-6);
+        }
+
+        .form-foot {
+            margin-top: var(--space-5);
+            text-align: center;
+            color: var(--color-muted);
+            font-size: var(--fs-sm);
+        }
+
+            .form-foot a {
+                color: var(--color-primary);
+                font-weight: var(--fw-medium);
+            }
+    </style>
+</head>
+<body>
+    <div id="nav-root"></div>
+    <main class="container">
+        <div class="auth-wrap">
+            <div class="card auth-card">
+                <h1 class="auth-title">Welcome back</h1>
+                <p class="auth-sub">Log in to your TravelCo account.</p>
+                <form id="loginForm" class="stack" novalidate>
+                    <div class="field">
+                        <label class="label" for="email">Email</label>
+                        <input class="input" id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
+                        <span class="field__error" id="errEmail"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="password">Password</label>
+                        <input class="input" id="password" name="password" type="password" placeholder="Your password" autocomplete="current-password" />
+                        <span class="field__error" id="errPassword"></span>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--block">Log in</button>
+                </form>
+                <p class="form-foot">No account yet? <a href="register.html">Create one</a></p>
+            </div>
+        </div>
+    </main>
+    <div id="footer-root"></div>
+    <script type="module" src="js/pages/login.js"></script>
+</body>
+</html>

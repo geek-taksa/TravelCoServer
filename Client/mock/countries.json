@@ -1,0 +1,224 @@
+[
+    {
+      "code": "FR",
+      "name": "France",
+      "capital": "Paris",
+      "region": "Europe",
+      "population": 67391582,
+      "area": 551695,
+      "languages": [ "French" ],
+      "currencies": [ "Euro" ],
+      "flag": "https://flagcdn.com/fr.svg"
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "capital": "Berlin",
+      "region": "Europe",
+      "population": 83240525,
+      "area": 357114,
+      "languages": [ "German" ],
+      "currencies": [ "Euro" ],
+      "flag": "https://flagcdn.com/de.svg"
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "capital": "Madrid",
+      "region": "Europe",
+      "population": 47351567,
+      "area": 505992,
+      "languages": [ "Spanish" ],
+      "currencies": [ "Euro" ],
+      "flag": "https://flagcdn.com/es.svg"
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "capital": "Rome",
+      "region": "Europe",
+      "population": 59554023,
+      "area": 301336,
+      "languages": [ "Italian" ],
+      "currencies": [ "Euro" ],
+      "flag": "https://flagcdn.com/it.svg"
+    },
+    {
+      "code": "IL",
+      "name": "Israel",
+      "capital": "Jerusalem",
+      "region": "Asia",
+      "population": 9216900,
+      "area": 20770,
+      "languages": [ "Hebrew", "Arabic" ],
+      "currencies": [ "Israeli new shekel" ],
+      "flag": "https://flagcdn.com/il.svg"
+    },
+    {
+      "code": "JP",
+      "name": "Japan",
+      "capital": "Tokyo",
+      "region": "Asia",
+      "population": 125836021,
+      "area": 377930,
+      "languages": [ "Japanese" ],
+      "currencies": [ "Japanese yen" ],
+      "flag": "https://flagcdn.com/jp.svg"
+    },
+    {
+      "code": "CN",
+      "name": "China",
+      "capital": "Beijing",
+      "region": "Asia",
+      "population": 1402112000,
+      "area": 9706961,
+      "languages": [ "Chinese" ],
+      "currencies": [ "Chinese yuan" ],
+      "flag": "https://flagcdn.com/cn.svg"
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "capital": "New Delhi",
+      "region": "Asia",
+      "population": 1380004385,
+      "area": 3287590,
+      "languages": [ "Hindi", "English" ],
+      "currencies": [ "Indian rupee" ],
+      "flag": "https://flagcdn.com/in.svg"
+    },
+    {
+      "code": "US",
+      "name": "United States",
+      "capital": "Washington, D.C.",
+      "region": "Americas",
+      "population": 329484123,
+      "area": 9372610,
+      "languages": [ "English" ],
+      "currencies": [ "United States dollar" ],
+      "flag": "https://flagcdn.com/us.svg"
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "capital": "Brasília",
+      "region": "Americas",
+      "population": 212559417,
+      "area": 8515767,
+      "languages": [ "Portuguese" ],
+      "currencies": [ "Brazilian real" ],
+      "flag": "https://flagcdn.com/br.svg"
+    },
+    {
+      "code": "CA",
+      "name": "Canada",
+      "capital": "Ottawa",
+      "region": "Americas",
+      "population": 38005238,
+      "area": 9984670,
+      "languages": [ "English", "French" ],
+      "currencies": [ "Canadian dollar" ],
+      "flag": "https://flagcdn.com/ca.svg"
+    },
+    {
+      "code": "MX",
+      "name": "Mexico",
+      "capital": "Mexico City",
+      "region": "Americas",
+      "population": 128932753,
+      "area": 1964375,
+      "languages": [ "Spanish" ],
+      "currencies": [ "Mexican peso" ],
+      "flag": "https://flagcdn.com/mx.svg"
+    },
+    {
+      "code": "NG",
+      "name": "Nigeria",
+      "capital": "Abuja",
+      "region": "Africa",
+      "population": 206139587,
+      "area": 923768,
+      "languages": [ "English" ],
+      "currencies": [ "Nigerian naira" ],
+      "flag": "https://flagcdn.com/ng.svg"
+    },
+    {
+      "code": "EG",
+      "name": "Egypt",
+      "capital": "Cairo",
+      "region": "Africa",
+      "population": 102334403,
+      "area": 1002450,
+      "languages": [ "Arabic" ],
+      "currencies": [ "Egyptian pound" ],
+      "flag": "https://flagcdn.com/eg.svg"
+    },
+    {
+      "code": "ZA",
+      "name": "South Africa",
+      "capital": "Pretoria",
+      "region": "Africa",
+      "population": 59308690,
+      "area": 1221037,
+      "languages": [ "English", "Afrikaans", "Zulu" ],
+      "currencies": [ "South African rand" ],
+      "flag": "https://flagcdn.com/za.svg"
+    },
+    {
+      "code": "KE",
+      "name": "Kenya",
+      "capital": "Nairobi",
+      "region": "Africa",
+      "population": 53771296,
+      "area": 580367,
+      "languages": [ "English", "Swahili" ],
+      "currencies": [ "Kenyan shilling" ],
+      "flag": "https://flagcdn.com/ke.svg"
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "capital": "Canberra",
+      "region": "Oceania",
+      "population": 25687041,
+      "area": 7692024,
+      "languages": [ "English" ],
+      "currencies": [ "Australian dollar" ],
+      "flag": "https://flagcdn.com/au.svg"
+    },
+    {
+      "code": "NZ",
+      "name": "New Zealand",
+      "capital": "Wellington",
+      "region": "Oceania",
+      "population": 5084300,
+      "area": 270467,
+      "languages": [ "English", "Maori" ],
+      "currencies": [ "New Zealand dollar" ],
+      "flag": "https://flagcdn.com/nz.svg"
+    },
+    {
+      "code": "FJ",
+      "name": "Fiji",
+      "capital": "Suva",
+      "region": "Oceania",
+      "population": 896444,
+      "area": 18272,
+      "languages": [ "English", "Fijian" ],
+      "currencies": [ "Fijian dollar" ],
+      "flag": "https://flagcdn.com/fj.svg"
+    },
+    {
+      "code": "AQ",
+      "name": "Antarctica",
+      "capital": "—",
+      "region": "Antarctic",
+      "population": 1000,
+      "area": 14000000,
+      "languages": [],
+      "currencies": [],
+      "flag": "https://flagcdn.com/aq.svg"
+    }
+]
+
+

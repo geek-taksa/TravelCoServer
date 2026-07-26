@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelCo — My Lists</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <style>
+        .list-block {
+            margin-bottom: var(--space-8);
+        }
+
+        .list-head {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+        }
+
+            .list-head h2 {
+                font-family: var(--font-display);
+                font-size: var(--fs-2xl);
+                color: var(--color-heading);
+            }
+
+        .list-grid {
+            display: grid;
+            gap: var(--space-5);
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 640px) {
+            .list-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .list-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .list-card__flag {
+            display: block;
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--color-border);
+        }
+
+        .list-card .btn {
+            font-size: var(--fs-xs);
+            padding: var(--space-2) var(--space-3);
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-root"></div>
+    <main class="container section">
+        <h1 class="section-title">My Lists</h1>
+        <section class="list-block">
+            <div class="list-head"><h2>Visited</h2><span class="badge" id="visitedCount">0</span></div>
+            <div class="list-grid" id="visitedList"></div>
+        </section>
+        <section class="list-block">
+            <div class="list-head"><h2>Want to visit</h2><span class="badge" id="wishlistCount">0</span></div>
+            <div class="list-grid" id="wishlistList"></div>
+        </section>
+    </main>
+    <div id="footer-root"></div>
+    <script type="module" src="js/pages/lists.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+
+  [
+    {
+      "id": 1,
+      "username": "maria",
+      "email": "maria@travelco.dev",
+      "role": "user",
+      "locked": false,
+      "canShare": true,
+      "preferences": {
+        "continents": [ "Europe", "Asia" ],
+        "languages": [
+          {
+            "name": "English",
+            "level": "Fluent"
+          },
+          {
+            "name": "Hebrew",
+            "level": "Native"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "username": "admin",
+      "email": "admin@travelco.dev",
+      "role": "admin",
+      "locked": false,
+      "canShare": true,
+      "preferences": {
+        "continents": [],
+        "languages": []
+      }
+    },
+    {
+      "id": 3,
+      "username": "daniel",
+      "email": "daniel@travelco.dev",
+      "role": "user",
+      "locked": true,
+      "canShare": false,
+      "preferences": {
+        "continents": [ "Americas" ],
+        "languages": [
+          {
+            "name": "Spanish",
+            "level": "Intermediate"
+          }
+        ]
+      }
+    }
+  ]
+
+

@@ -1,0 +1,55 @@
+
+  [
+    {
+      "id": 1,
+      "title": "Capitals of the World",
+      "timeLimitSec": 60,
+      "questions": [
+        {
+          "id": 1,
+          "prompt": "What is the capital of Japan?",
+          "options": [ "Osaka", "Tokyo", "Kyoto", "Nagoya" ],
+          "answer": 1
+        },
+        {
+          "id": 2,
+          "prompt": "What is the capital of Australia?",
+          "options": [ "Sydney", "Melbourne", "Canberra", "Perth" ],
+          "answer": 2
+        },
+        {
+          "id": 3,
+          "prompt": "What is the capital of Canada?",
+          "options": [ "Toronto", "Ottawa", "Vancouver", "Montreal" ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Guess the Region",
+      "timeLimitSec": 45,
+      "questions": [
+        {
+          "id": 1,
+          "prompt": "Which region is Nigeria in?",
+          "options": [ "Asia", "Africa", "Europe", "Oceania" ],
+          "answer": 1
+        },
+        {
+          "id": 2,
+          "prompt": "Which region is Fiji in?",
+          "options": [ "Oceania", "Americas", "Asia", "Africa" ],
+          "answer": 0
+        },
+        {
+          "id": 3,
+          "prompt": "Which region is Brazil in?",
+          "options": [ "Europe", "Africa", "Americas", "Asia" ],
+          "answer": 2
+        }
+      ]
+    }
+  ]
+
+

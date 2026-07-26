@@ -1,0 +1,59 @@
+﻿/* ==========================================================================
+   TravelCo Design Tokens — single source of truth for colors, type,
+   spacing, radius and shadows. Every other stylesheet consumes these.
+   ========================================================================== */
+:root {
+    /* Brand & color */
+    --color-primary: #ea580c; /* orange/600 - logo, primary buttons */
+    --color-primary-hover: #c2470a;
+    --color-primary-soft: #fff2ec;
+    --color-heading: #431407; /* orange/950 - nav + headings */
+    --color-text: #0a0a0a;
+    --color-muted: #656272; /* secondary text, counts */
+    --color-placeholder: #6b7280;
+    --color-border: #e5e7eb;
+    --color-border-soft: #dbdada; /* footer divider */
+    --color-bg: #fcfcfc;
+    --color-surface: #ffffff;
+    --color-success: #16a34a;
+    --color-danger: #dc2626;
+    --color-warning: #d97706;
+    /* Typography — Fraunces substitutes for OT Abalos */
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --fs-xs: 0.8125rem;
+    --fs-sm: 0.9375rem;
+    --fs-base: 1rem;
+    --fs-md: 1.25rem;
+    --fs-lg: 1.5rem;
+    --fs-xl: 1.75rem;
+    --fs-2xl: 2rem;
+    --fs-3xl: 2.25rem;
+    --fs-hero: clamp(2.5rem, 5vw, 3.75rem);
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 2.5rem;
+    --space-8: 3rem;
+    --space-10: 4rem;
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 40px;
+    --radius-full: 999px;
+    /* Elevation */
+    --shadow-nav: 0 4px 24px 0 rgba(219, 218, 218, 0.32);
+    --shadow-card: 0 2px 12px 0 rgba(67, 20, 7, 0.06);
+    --shadow-card-hover: 0 8px 28px 0 rgba(67, 20, 7, 0.12);
+    /* Layout */
+    --container: 1200px;
+    --nav-height: 88px;
+}

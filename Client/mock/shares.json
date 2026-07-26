@@ -1,0 +1,35 @@
+
+  [
+    {
+      "id": 1,
+      "countryCode": "IT",
+      "countryName": "Italy",
+      "author": "maria",
+      "type": "recommendation",
+      "title": "Don't skip the small towns",
+      "body": "Rome is amazing, but a day in Orvieto was the highlight of my trip.",
+      "createdAt": "2026-06-14"
+    },
+    {
+      "id": 2,
+      "countryCode": "JP",
+      "countryName": "Japan",
+      "author": "daniel",
+      "type": "review",
+      "title": "Kyoto in spring",
+      "body": "Crowded but worth it. Go early to the temples to beat the tour groups.",
+      "createdAt": "2026-06-20"
+    },
+    {
+      "id": 3,
+      "countryCode": "IT",
+      "countryName": "Italy",
+      "author": "daniel",
+      "type": "thought",
+      "title": "Trains > cars",
+      "body": "The high-speed rail made getting between cities effortless.",
+      "createdAt": "2026-07-01"
+    }
+  ]
+
+

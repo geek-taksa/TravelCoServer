@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelCo — Profile &amp; preferences</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <style>
+        .profile-wrap {
+            max-width: 620px;
+            margin: var(--space-8) auto;
+        }
+
+        .profile-card {
+            padding: var(--space-7);
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-2);
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--fs-sm);
+        }
+
+        .lang-row {
+            gap: var(--space-2);
+        }
+
+            .lang-row .input {
+                flex: 1;
+            }
+
+            .lang-row .select {
+                width: 150px;
+            }
+
+            .lang-row .icon-btn {
+                flex-shrink: 0;
+            }
+
+        fieldset {
+            border: none;
+        }
+
+        legend {
+            font-weight: var(--fw-medium);
+            color: var(--color-heading);
+            margin-bottom: var(--space-2);
+            font-size: var(--fs-sm);
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-root"></div>
+    <main class="container">
+        <div class="profile-wrap">
+            <div class="card profile-card">
+                <h1 class="section-title" style="text-align:left; font-size:var(--fs-2xl)">Profile &amp; preferences</h1>
+                <form id="profileForm" class="stack" novalidate>
+                    <div class="field">
+                        <label class="label" for="username">Name</label>
+                        <input class="input" id="username" name="username" type="text" autocomplete="name" />
+                        <span class="field__error" id="errUsername"></span>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="email">Email</label>
+                        <input class="input" id="email" name="email" type="email" autocomplete="email" />
+                        <span class="field__error" id="errEmail"></span>
+                    </div>
+                    <fieldset>
+                        <legend>Continents you're interested in</legend>
+                        <div class="checkbox-grid" id="continents"></div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Languages you speak</legend>
+                        <div class="stack" id="languages"></div>
+                        <button type="button" class="btn btn--outline" id="addLang" style="margin-top: var(--space-3)">+ Add language</button>
+                    </fieldset>
+                    <button type="submit" class="btn btn--primary btn--block">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <div id="footer-root"></div>
+    <script type="module" src="js/pages/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TravelCo — Quizzes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <style>
+        .points-banner {
+            text-align: center;
+            color: var(--color-muted);
+            margin-bottom: var(--space-6);
+        }
+
+            .points-banner strong {
+                color: var(--color-primary);
+                font-size: var(--fs-lg);
+            }
+
+        .quiz-grid {
+            max-width: 760px;
+            margin-inline: auto;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .quiz-play {
+            max-width: 720px;
+            margin-inline: auto;
+        }
+
+        .quiz-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-6);
+        }
+
+        .quiz-title {
+            font-family: var(--font-display);
+            font-size: var(--fs-2xl);
+            color: var(--color-heading);
+        }
+
+        .timer {
+            font-variant-numeric: tabular-nums;
+            font-weight: var(--fw-semibold);
+            font-size: var(--fs-xl);
+            color: var(--color-heading);
+            background: var(--color-primary-soft);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-sm);
+        }
+
+        .timer--low {
+            color: #fff;
+            background: var(--color-danger);
+        }
+
+        .quiz-q {
+            border: 1px solid var(--color-border);
+        }
+
+        .quiz-q__prompt {
+            font-weight: var(--fw-medium);
+            color: var(--color-heading);
+            margin-bottom: var(--space-4);
+            font-size: var(--fs-md);
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: var(--space-3);
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: border-color .15s, background .15s;
+        }
+
+            .quiz-option:hover {
+                border-color: var(--color-primary);
+                background: var(--color-primary-soft);
+            }
+
+        .result-card {
+            max-width: 640px;
+            margin-inline: auto;
+        }
+
+        .result-score {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin: var(--space-3) 0;
+        }
+
+        .result-review {
+            margin-top: var(--space-6);
+            text-align: left;
+        }
+
+        .review-row {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--space-4);
+            padding: var(--space-3);
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--color-border);
+            background: var(--color-bg);
+        }
+
+        .review-row--ok {
+            border-left-color: var(--color-success);
+        }
+
+        .review-row--bad {
+            border-left-color: var(--color-danger);
+        }
+
+        .review-answer {
+            color: var(--color-muted);
+            font-weight: var(--fw-medium);
+            white-space: nowrap;
+        }
+
+        fieldset {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-root"></div>
+    <main class="container section">
+        <h1 class="section-title">Quizzes</h1>
+        <p class="points-banner">Your points: <strong id="pointsTotal">0</strong></p>
+        <div id="quizHub"></div>
+        <div class="quiz-play hidden" id="quizPlay"></div>
+    </main>
+    <div id="footer-root"></div>
+    <script type="module" src="js/pages/quizzes.js"></script>
+</body>
+</html>
