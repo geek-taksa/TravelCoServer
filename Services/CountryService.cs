@@ -43,5 +43,8 @@ namespace TravelCoServer.Services
         {
             return _repo.GetCountries(search, region, language, currency, sort, order);
         }
+
+        public List<string> GetLanguages() { return _repo.GetLanguages(); }
+        public List<string> GetCurrencies() { return _repo.GetCurrencies(); }
     }
 }

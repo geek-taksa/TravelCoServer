@@ -86,5 +86,15 @@ namespace TravelCoServer.Controllers
         {
             return Ok(_service.GetRegionCounts());
         }
+
+        // For sorting functionality on the countries page (sort by currency or language)
+
+        // GET api/countries/languages
+        [HttpGet("languages")]
+        public ActionResult<List<string>> Languages() { return Ok(_service.GetLanguages()); }
+
+        // GET api/countries/currencies
+        [HttpGet("currencies")]
+        public ActionResult<List<string>> Currencies() { return Ok(_service.GetCurrencies()); }
     }
 }

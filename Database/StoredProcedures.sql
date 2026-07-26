@@ -485,5 +485,23 @@ BEGIN
     FROM TravelCo_QuizResults
     WHERE UserId = @UserId;
 END
+GO
+
+--------------
+-- Additional SPs to fix the bug with search filter by language and currency (was only one option in dropdown)
+CREATE PROCEDURE TravelCo_sp_CountryLanguages_Distinct
+AS
+BEGIN
+    SELECT DISTINCT Language FROM TravelCo_CountryLanguages ORDER BY Language;
+END
+GO
+
+----
+CREATE PROCEDURE TravelCo_sp_CountryCurrencies_Distinct
+AS
+BEGIN
+    SELECT DISTINCT Currency FROM TravelCo_CountryCurrencies ORDER BY Currency;
+END
+GO
 
 

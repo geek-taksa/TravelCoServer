@@ -250,5 +250,34 @@ namespace TravelCoServer.Repositories
             }
             return countries;
         }
+
+        // METHODS for languages and currencies in search sort functionality
+        public List<string> GetLanguages()
+        {
+            List<string> list = new List<string>();
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_CountryLanguages_Distinct", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read()) list.Add(reader["Language"].ToString());
+            }
+            return list;
+        }
+
+        public List<string> GetCurrencies()
+        {
+            List<string> list = new List<string>();
+            using (SqlConnection conn = _db.GetConnection())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("TravelCo_sp_CountryCurrencies_Distinct", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read()) list.Add(reader["Currency"].ToString());
+            }
+            return list;
+        }
     }
 }
